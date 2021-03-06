@@ -1,26 +1,35 @@
+import React from "react";
 import styled from "styled-components";
 
-const UrgencyButton = ({ urgency, status }) => {
+const PanelTab = ({ status, title, setActiveCategory, category }) => {
+  const clickHandler = (event) => {
+    setActiveCategory(category);
+  };
   return (
-    <StyledUrgencyButton className={`urgency-button ${status}`}>
-      <p>{urgency}</p>
-    </StyledUrgencyButton>
+    <StyledUrgencyTab
+      onClick={clickHandler}
+      className={`urgency-button ${status}`}
+    >
+      <p>{title}</p>
+    </StyledUrgencyTab>
   );
 };
 
-const StyledUrgencyButton = styled.div`
+const StyledUrgencyTab = styled.div`
   cursor: pointer;
   font-family: "Noto Sans JP", sans-serif;
   font-style: normal;
   font-weight: bold;
-  width: 60px;
+  width: 300px;
+  max-width: 100%;
   height: 60px;
   border: 1px solid #ffffff;
-  border-radius: 50%;
+  border-radius: 48px;
   transition: all 0.2s;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 12px;
   p {
     margin-top: -3px;
     margin-bottom: 0;
@@ -45,4 +54,4 @@ const StyledUrgencyButton = styled.div`
   }
 `;
 
-export default UrgencyButton;
+export default PanelTab;

@@ -13,7 +13,7 @@ main {
   min-height: 100vh;
   min-width: 100vw;
   display: flex;
-  justify-content: center;
+  /* justify-content: center;*/
   align-items: center;
   background: linear-gradient(107.56deg, #74ebd5 0%, #acb6e5 100%);
 }

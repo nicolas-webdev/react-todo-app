@@ -32,7 +32,10 @@ const ModalForm = () => {
         ))}
       </UrgencySelector>
       <TextArea todo={todo} setTodo={setTodo} />
-      <SubmitButton todo={todo} setTodo={setTodo} schema={todoSchema} />
+      <Buttons>
+        <CancelButton>キャンセル</CancelButton>
+        <SubmitButton todo={todo} setTodo={setTodo} schema={todoSchema} />
+      </Buttons>
     </StyledModalForm>
   );
 };
@@ -48,8 +51,32 @@ const StyledModalForm = styled.form`
 
 const UrgencySelector = styled.div`
   width: 240px;
+  max-width: 100%;
   display: flex;
   justify-content: space-between;
+`;
+
+const Buttons = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const CancelButton = styled.div`
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 42px;
+  padding: 8px, 44px;
+  background: rgba(0, 0, 0, 0);
+  border-radius: 10px;
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  color: #ffffff;
 `;
 
 export default ModalForm;

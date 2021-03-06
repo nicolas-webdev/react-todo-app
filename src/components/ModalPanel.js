@@ -18,6 +18,11 @@ const StyledModalPanel = styled.div`
   box-sizing: border-box;
   box-shadow: 0px 4px 10px 5px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1889;
 `;
 
 export default ModalPanel;

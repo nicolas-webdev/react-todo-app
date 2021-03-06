@@ -5,6 +5,8 @@ const SubmitButton = ({ todo, setTodo, schema }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(todo);
+    // Add todo to state with redux
+    // Change toggle state with Redux
     setTodo({ ...todo, ...schema });
   };
   return (
