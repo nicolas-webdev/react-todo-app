@@ -1,6 +1,7 @@
 import PlusButton from "./components/PlusButton";
 import ModalPanel from "./components/ModalPanel";
 import LeftPanel from "./components/LeftPanel";
+import CategorySlider from "./components/CategorySlider";
 
 function App() {
   return (
@@ -8,7 +9,10 @@ function App() {
       <LeftPanel />
       {/* <PlusButton /> */}
       {/* set visibility conditionally based on Redux state */}
-      <ModalPanel />
+      {/* <ModalPanel /> */}
+      <div className="main-area">
+        <CategorySlider category={"今"} />
+      </div>
     </main>
   );
 }

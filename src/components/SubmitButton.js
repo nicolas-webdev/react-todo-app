@@ -11,7 +11,7 @@ const SubmitButton = ({ todo, setTodo, schema }) => {
   };
   return (
     <StyledSubmitButton onClick={handleSubmit} className="submit-button">
-      追加
+      保存
     </StyledSubmitButton>
   );
 };
