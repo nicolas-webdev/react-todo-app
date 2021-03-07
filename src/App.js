@@ -92,6 +92,7 @@ const SubArea = styled.div`
   height: 90vh;
   max-width: 400px;
   margin: 30px;
+  margin-right: 0;
 `;
 
 const MainArea = styled.div`
@@ -99,7 +100,7 @@ const MainArea = styled.div`
   height: 90vh;
   max-width: 100%;
   margin: 0px;
-  padding: 0px;
+  padding: 0px 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
