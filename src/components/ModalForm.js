@@ -4,8 +4,11 @@ import ModalInput from "./ModalInput";
 import UrgencyButton from "./UrgencyButton";
 import TextArea from "./TextArea";
 import SubmitButton from "./SubmitButton";
+import { useDispatch } from "react-redux";
+import { toggle } from "../redux/toggleSlice";
 
 const ModalForm = () => {
+  const dispatch = useDispatch();
   const urgencies = ["近", "今", "後"];
   const todoSchema = {
     id: "",
@@ -34,7 +37,9 @@ const ModalForm = () => {
       </UrgencySelector>
       <TextArea todo={todo} setTodo={setTodo} />
       <Buttons>
-        <CancelButton>キャンセル</CancelButton>
+        <CancelButton onClick={() => dispatch(toggle())}>
+          キャンセル
+        </CancelButton>
         <SubmitButton todo={todo} setTodo={setTodo} schema={todoSchema} />
       </Buttons>
     </StyledModalForm>

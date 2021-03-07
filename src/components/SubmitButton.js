@@ -2,9 +2,10 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { saveTodo } from "../redux/todoSlice";
+import { toggle } from "../redux/toggleSlice";
 
 const SubmitButton = ({ todo, setTodo, schema }) => {
-  const todos = useSelector((state) => state.todos);
+  const todos = useSelector((state) => state);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -19,9 +20,8 @@ const SubmitButton = ({ todo, setTodo, schema }) => {
       completed: false,
     };
     dispatch(saveTodo(newTodo));
+    dispatch(toggle());
     setTodo({ ...schema });
-
-    // Change toggle state with Redux
   };
   return (
     <StyledSubmitButton onClick={handleSubmit} className="submit-button">

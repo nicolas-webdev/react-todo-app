@@ -4,68 +4,77 @@ import ModalPanel from "./components/ModalPanel";
 import LeftPanel from "./components/LeftPanel";
 import CategorySlider from "./components/CategorySlider";
 import TodoCard from "./components/TodoCard";
-import store from "./redux/store";
-import { Provider } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { toggle } from "./redux/toggleSlice";
 
 function App() {
+  const toggleState = useSelector(({ toggle }) => toggle);
+  const todoList = useSelector(({ todos }) => todos);
+  const dispatch = useDispatch();
+
   return (
-    <Provider store={store}>
-      <Main className="App">
-        <ModalPanel />
-        {/* modal panel is used for both, adding and editing tasks; set visibility hide/show based on redux toggle state */}
-        {/* <PlusButton /> */}
-        {/* if tasks are 0, absolute 50-50, else absolute 30-30 */}
-        <SubArea className="sub-area">
-          <LeftPanel />
-        </SubArea>
-        <MainArea className="main-area">
-          <CategorySliderContainer>
-            <CategorySlider category={"今"} />
-          </CategorySliderContainer>
-          <TodosContainer>
-            <TodoCard
-              todo={{
-                title: "タスクのタイトル",
-                notes:
-                  "ノートアイウエオさシスセトたちつてと何ぬねのは皮膚へ保まみむめも",
-                completed: false,
-              }}
-            />
-            <TodoCard
-              todo={{
-                title: "タスクのタイトル",
-                notes:
-                  "ノートアイウエオさシスセトたちつてと何ぬねのは皮膚へ保まみむめも",
-                completed: false,
-              }}
-            />
-            <TodoCard
-              todo={{
-                title: "タスクのタイトル",
-                notes:
-                  "ノートアイウエオさシスセトさシスセトさシスセトさシスセトたちつてと何ぬねのは皮膚へ保まみむめも",
-                completed: false,
-              }}
-            />
-            <TodoCard
-              todo={{
-                title: "タスクのタイトル",
-                notes:
-                  "ノートアイウエオさシスセトたちつてと何ぬねのは皮膚へ保まみむめも",
-                completed: false,
-              }}
-            />
-            <TodoCard
-              todo={{
-                title: "タ¥ル",
-                notes: "皮膚へ保まみむめも",
-                completed: true,
-              }}
-            />
-          </TodosContainer>
-        </MainArea>
-      </Main>
-    </Provider>
+    <Main className="App">
+      <PlusButton position={`${todoList.length === 0 ? "center" : "bottom"}`} />
+
+      {todoList.length !== 0 && (
+        <>
+          <SubArea className="sub-area">
+            <LeftPanel />
+          </SubArea>
+          <MainArea onClick={() => toggleState && dispatch(toggle())}>
+            <CategorySliderContainer>
+              <CategorySlider category={"今"} />
+            </CategorySliderContainer>
+            <TodosContainer>
+              {todoList.map((current) => (
+                <TodoCard todo={current} />
+              ))}
+              <TodoCard
+                todo={{
+                  title: "タスクのタイトル",
+                  notes:
+                    "ノートアイウエオさシスセトたちつてと何ぬねのは皮膚へ保まみむめも",
+                  completed: false,
+                }}
+              />
+              <TodoCard
+                todo={{
+                  title: "タスクのタイトル",
+                  notes:
+                    "ノートアイウエオさシスセトたちつてと何ぬねのは皮膚へ保まみむめも",
+                  completed: false,
+                }}
+              />
+              <TodoCard
+                todo={{
+                  title: "タスクのタイトル",
+                  notes:
+                    "ノートアイウエオさシスセトさシスセトさシスセトさシスセトたちつてと何ぬねのは皮膚へ保まみむめも",
+                  completed: false,
+                }}
+              />
+              <TodoCard
+                todo={{
+                  title: "タスクのタイトル",
+                  notes:
+                    "ノートアイウエオさシスセトたちつてと何ぬねのは皮膚へ保まみむめも",
+                  completed: false,
+                }}
+              />
+              <TodoCard
+                todo={{
+                  title: "タ¥ル",
+                  notes: "皮膚へ保まみむめも",
+                  completed: true,
+                }}
+              />
+            </TodosContainer>
+          </MainArea>
+        </>
+      )}
+
+      {toggleState && <ModalPanel />}
+    </Main>
   );
 }
 
