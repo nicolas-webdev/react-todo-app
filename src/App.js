@@ -4,21 +4,68 @@ import ModalPanel from "./components/ModalPanel";
 import LeftPanel from "./components/LeftPanel";
 import CategorySlider from "./components/CategorySlider";
 import TodoCard from "./components/TodoCard";
+import store from "./redux/store";
+import { Provider } from "react-redux";
 
 function App() {
   return (
-    <Main className="App">
-      <SubArea className="sub-area">
-        <LeftPanel />
+    <Provider store={store}>
+      <Main className="App">
+        <ModalPanel />
+        {/* modal panel is used for both, adding and editing tasks; set visibility hide/show based on redux toggle state */}
         {/* <PlusButton /> */}
-        {/* set visibility conditionally based on Redux state */}
-        {/* <ModalPanel /> */}
-      </SubArea>
-      <MainArea className="main-area">
-        {/* <CategorySlider category={"今"} /> */}
-        <TodoCard />
-      </MainArea>
-    </Main>
+        {/* if tasks are 0, absolute 50-50, else absolute 30-30 */}
+        <SubArea className="sub-area">
+          <LeftPanel />
+        </SubArea>
+        <MainArea className="main-area">
+          <CategorySliderContainer>
+            <CategorySlider category={"今"} />
+          </CategorySliderContainer>
+          <TodosContainer>
+            <TodoCard
+              todo={{
+                title: "タスクのタイトル",
+                notes:
+                  "ノートアイウエオさシスセトたちつてと何ぬねのは皮膚へ保まみむめも",
+                completed: false,
+              }}
+            />
+            <TodoCard
+              todo={{
+                title: "タスクのタイトル",
+                notes:
+                  "ノートアイウエオさシスセトたちつてと何ぬねのは皮膚へ保まみむめも",
+                completed: false,
+              }}
+            />
+            <TodoCard
+              todo={{
+                title: "タスクのタイトル",
+                notes:
+                  "ノートアイウエオさシスセトさシスセトさシスセトさシスセトたちつてと何ぬねのは皮膚へ保まみむめも",
+                completed: false,
+              }}
+            />
+            <TodoCard
+              todo={{
+                title: "タスクのタイトル",
+                notes:
+                  "ノートアイウエオさシスセトたちつてと何ぬねのは皮膚へ保まみむめも",
+                completed: false,
+              }}
+            />
+            <TodoCard
+              todo={{
+                title: "タ¥ル",
+                notes: "皮膚へ保まみむめも",
+                completed: true,
+              }}
+            />
+          </TodosContainer>
+        </MainArea>
+      </Main>
+    </Provider>
   );
 }
 
@@ -44,6 +91,20 @@ const MainArea = styled.div`
   max-width: 100%;
   margin: 0px;
   padding: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const CategorySliderContainer = styled.div`
+  margin-bottom: 60px;
+`;
+const TodosContainer = styled.div`
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  justify-items: center;
+  gap: 30px;
 `;
 
 export default App;

@@ -1,13 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
+import { saveTodo } from "../redux/todoSlice";
 
 const SubmitButton = ({ todo, setTodo, schema }) => {
+  const todos = useSelector((state) => state.todos);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    console.log(todos);
+  }, [todos]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(todo);
-    // Add todo to state with redux
+    const newTodo = {
+      ...todo,
+      id: Date.now().valueOf(),
+      completed: false,
+    };
+    dispatch(saveTodo(newTodo));
+    setTodo({ ...schema });
+
     // Change toggle state with Redux
-    setTodo({ ...todo, ...schema });
   };
   return (
     <StyledSubmitButton onClick={handleSubmit} className="submit-button">

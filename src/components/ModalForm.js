@@ -12,6 +12,7 @@ const ModalForm = () => {
     title: "",
     urgency: urgencies[1],
     notes: "",
+    completed: false,
   };
   const [todo, setTodo] = useState(todoSchema);
   const urgencyHandler = ({ target }) => {

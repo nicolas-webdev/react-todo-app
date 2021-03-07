@@ -29,6 +29,11 @@ const StyledCategorySlider = styled.div`
 const Arrow = styled.div`
   margin-top: 12px;
   cursor: pointer;
+  transition: all 0.8s;
+  &:hover {
+    transform-origin: center;
+    transform: scale(1.3);
+  }
 `;
 
 const StyledSliderTab = styled.div`

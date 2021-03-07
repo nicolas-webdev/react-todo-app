@@ -3,13 +3,13 @@ import styled from "styled-components";
 import Checkmark from "../img/checkmark.svg";
 import Delete from "../img/delete.svg";
 
-const TodoCard = (todo) => {
-  const { title, notes, category } = todo;
+const TodoCard = ({ todo }) => {
+  const { title, notes, completed } = todo;
   return (
     <CardContainer>
       <TaskTitle>{title}</TaskTitle>
       <TaskDescription>{notes}</TaskDescription>
-      {category !== "旧" ? (
+      {!completed ? (
         <CheckmarkIcon
           src={Checkmark}
           width="42"
@@ -34,6 +34,8 @@ export default TodoCard;
 
 const CardContainer = styled.div`
   cursor: pointer;
+  min-height: 200px;
+  max-height: 100%;
   min-width: 300px;
   width: 50%;
   padding: 18px;
@@ -47,7 +49,6 @@ const CardContainer = styled.div`
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   position: relative;
   transition: all 0.3s;
   &:hover {
@@ -56,13 +57,8 @@ const CardContainer = styled.div`
       font-size: 24px;
       padding-bottom: 8px;
     }
-    img {
-      transform: translate(-5px, -5px);
-      transform: scale(1.3);
-    }
-    p {
-      padding-top: 10px;
-      padding-bottom: 30px;
+    img:hover {
+      filter: brightness(1.1);
     }
   }
 `;
