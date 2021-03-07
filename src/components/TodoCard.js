@@ -1,21 +1,31 @@
 import React from "react";
 import styled from "styled-components";
 import Checkmark from "../img/checkmark.svg";
+import Delete from "../img/delete.svg";
 
-const TodoCard = () => {
+const TodoCard = (todo) => {
+  const { title, notes, category } = todo;
   return (
     <CardContainer>
-      <TaskTitle>タスクのタイトル</TaskTitle>
-      <TaskDescription>
-        ノートアイウエオさシスセトたちつてと何ぬねのは皮膚へ保まみむめも
-      </TaskDescription>
-      <CheckmarkIcon
-        src={Checkmark}
-        width="42"
-        height="42"
-        className="todo-card__check"
-        alt="タスク完了"
-      />
+      <TaskTitle>{title}</TaskTitle>
+      <TaskDescription>{notes}</TaskDescription>
+      {category !== "旧" ? (
+        <CheckmarkIcon
+          src={Checkmark}
+          width="42"
+          height="42"
+          className="todo-card__check"
+          alt="タスク完了"
+        />
+      ) : (
+        <DestroyIcon
+          src={Delete}
+          width="42"
+          height="42"
+          className="todo-card__delete"
+          alt="タスク削除"
+        />
+      )}
     </CardContainer>
   );
 };
@@ -41,12 +51,18 @@ const CardContainer = styled.div`
   position: relative;
   transition: all 0.3s;
   &:hover {
-    transform: translateY(-5px);
+    transform: translateY(-6px);
+    h2 {
+      font-size: 24px;
+      padding-bottom: 8px;
+    }
     img {
       transform: translate(-5px, -5px);
-      &:hover {
-        transform: scale(1.2);
-      }
+      transform: scale(1.3);
+    }
+    p {
+      padding-top: 10px;
+      padding-bottom: 30px;
     }
   }
 `;
@@ -57,6 +73,7 @@ const TaskTitle = styled.h2`
   padding-bottom: 16px;
   color: #ffffff;
   text-shadow: 0px 4px 4px #6dd4ed;
+  transition: all 0.2s;
 `;
 
 const TaskDescription = styled.p`
@@ -64,12 +81,15 @@ const TaskDescription = styled.p`
   font-size: 16px;
   line-height: 23px;
   color: rgba(0, 0, 0, 0.61);
-  padding-bottom: 8px;
+  padding-bottom: 24px;
+  transition: all 0.2s;
 `;
 
 const CheckmarkIcon = styled.img`
   position: absolute;
   bottom: -2px;
   right: 0;
-  transition: all 0.3s;
+  transition: all 0.2s;
 `;
+
+const DestroyIcon = styled(CheckmarkIcon)``;
