@@ -24,10 +24,8 @@ const LeftPanel = () => {
 };
 
 const PanelContainer = styled.div`
-  width: 30vw;
-  height: 90vh;
-  max-width: 400px;
-  margin: 30px;
+  height: 100%;
+  width: 100%;
   padding: 30px;
   display: flex;
   flex-direction: column;
